@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ram Chaganti — Finance & Strategy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0c;
+            --bg-secondary: #111114;
+            --bg-card: #16161a;
+            --text-primary: #f0eff4;
+            --text-secondary: #94939e;
+            --accent: #00e5a0;
+            --accent-dim: rgba(0, 229, 160, 0.08);
+            --accent-glow: rgba(0, 229, 160, 0.25);
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(0, 229, 160, 0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--bg-primary);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── Grain overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,12,0.7);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 32px; }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 40px 80px;
+            position: relative;
+        }
+
+        .hero-bg-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: -20%; right: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: pulseGlow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text { animation: fadeUp 1s ease-out; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border-hover);
+            background: var(--accent-dim);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        h1 .accent { color: var(--accent); }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 40px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ── Headshot ── */
+        .hero-photo {
+            position: relative;
+            animation: fadeUp 1s ease-out 0.3s both;
+        }
+
+        .hero-photo-frame {
+            width: 340px;
+            height: 420px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-photo-frame .placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .hero-photo-accent {
+            position: absolute;
+            top: -12px; right: -12px;
+            width: 100%; height: 100%;
+            border-radius: var(--radius);
+            border: 1px solid var(--accent);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* ── Section base ── */
+        section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        /* ── About ── */
+        #about { border-top: 1px solid var(--border); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-text p + p { margin-top: 16px; }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-content: start;
+        }
+
+        .stat-card {
+            padding: 28px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* ── Projects ── */
+        #projects { border-top: 1px solid var(--border); }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .project-card:hover::before { opacity: 1; }
+
+        .project-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tags span {
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Contact ── */
+        #contact { border-top: 1px solid var(--border); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .contact-text {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            border-color: var(--border-hover);
+            transform: translateX(4px);
+        }
+
+        .contact-link .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-link .icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+
+        .contact-link .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .contact-link .value {
+            font-size: 0.95rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            nav { padding: 16px 24px; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 0.78rem; }
+
+            .hero { padding: 100px 24px 60px; }
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .hero-photo { order: -1; justify-self: center; }
+            .hero-photo-frame { width: 260px; height: 320px; }
+
+            section { padding: 60px 24px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.2rem; }
+            .hero-ctas { flex-direction: column; }
+            .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .stat-card { padding: 20px; }
+        }
+
+        /* ── Scroll animations ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <a href="#" class="nav-logo">ram<span>.</span></a>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-tag">Open to Opportunities</div>
+            <h1>Ram Chaganti<br><span class="accent">Finance & Strategy</span></h1>
+            <p class="hero-desc">
+                Junior at Rutgers Business School studying Finance with a focus in Philosophy, Politics, and Economics. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.
+            </p>
+            <div class="hero-ctas">
+                <a href="resume.pdf" class="btn-primary" download>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Resume
+                </a>
+                <a href="#projects" class="btn-secondary">View Projects →</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <div class="hero-photo-frame">
+                <!-- Replace src with your actual headshot file name -->
+                <img src="headshot.jpg" alt="Ram Chaganti" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="placeholder" style="display:none;">Your photo here</div>
+            </div>
+            <div class="hero-photo-accent"></div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="reveal">
+        <div class="section-label">About</div>
+        <div class="section-title">Background</div>
+    </div>
+    <div class="about-grid">
+        <div class="about-text reveal">
+            <p>I'm a junior finance student at Rutgers Business School with a concentration in Philosophy, Politics, and Economics. My interests sit at the intersection of capital markets, public policy, and emerging technology—particularly defense and AI.</p>
+            <p>Outside the classroom, I've built and operated multiple businesses—from a 40-person snow removal operation to a vintage clothing resale business and a recording studio. These ventures gave me hands-on experience with P&L management, unit economics, and scaling operations from zero.</p>
+            <p>I'm currently building out technical skills in financial modeling, valuation, and data analysis as I recruit for investment banking and strategic finance roles across defense, technology, and financial services.</p>
+        </div>
+        <div class="about-stats reveal">
+            <div class="stat-card">
+                <div class="stat-number">$42K+</div>
+                <div class="stat-label">Revenue Generated Across Ventures</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">Team Members Managed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Businesses Built</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">PPE</div>
+                <div class="stat-label">Philosophy, Politics & Economics</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <div class="reveal">
+        <div class="section-label">Projects & Case Studies</div>
+        <div class="section-title">Selected Work</div>
+    </div>
+    <div class="projects-grid">
+        <div class="project-card reveal">
+            <div class="project-type">Valuation</div>
+            <div class="project-title">DCF Analysis — [Company Name]</div>
+            <div class="project-desc">
+                Built a full discounted cash flow model projecting 5-year financials, calculating WACC, and deriving an implied share price with sensitivity analysis.
+            </div>
+            <div class="project-tags">
+                <span>Excel</span>
+                <span>DCF</span>
+                <span>WACC</span>
+                <span>Sensitivity Analysis</span>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-type">M&A</div>
+            <div class="project-title">Merger Model — [Deal Name]</div>
+            <div class="project-desc">
+                Constructed an accretion/dilution analysis for a hypothetical acquisition, modeling purchase price allocation, synergies, and pro forma EPS impact.
+            </div>
+            <div class="project-tags">
+                <span>Merger Model</span>
+                <span>Accretion / Dilution</span>
+                <span>Synergies</span>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-type">LBO</div>
+            <div class="project-title">Leveraged Buyout — [Target Name]</div>
+            <div class="project-desc">
+                Developing a leveraged buyout model analyzing entry/exit multiples, debt schedules, and sponsor returns under multiple scenarios.
+            </div>
+            <div class="project-tags">
+                <span>LBO</span>
+                <span>Debt Schedule</span>
+                <span>IRR Analysis</span>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-type">Entrepreneurship</div>
+            <div class="project-title">SnowCo — Snow Removal Operation</div>
+            <div class="project-desc">
+                Founded and scaled a seasonal snow removal service to $18K+ in revenue with a team of 40. Managed operations, client acquisition, and crew logistics across multiple zones.
+            </div>
+            <div class="project-tags">
+                <span>P&L Management</span>
+                <span>Operations</span>
+                <span>Team Leadership</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <div class="reveal">
+        <div class="section-label">Contact</div>
+        <div class="section-title">Let's Connect</div>
+    </div>
+    <div class="contact-grid">
+        <div class="contact-text reveal">
+            I'm currently recruiting for summer 2026 investment banking and strategic finance roles. Open to conversations across defense tech, financial services, and technology.
+        </div>
+        <div class="contact-links reveal">
+            <a href="mailto:your.email@rutgers.edu" class="contact-link">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </div>
+                <div>
+                    <div class="label">Email</div>
+                    <div class="value">your.email@rutgers.edu</div>
+                </div>
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+                <div class="icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                </div>
+                <div>
+                    <div class="label">LinkedIn</div>
+                    <div class="value">linkedin.com/in/yourprofile</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 Ram Chaganti. Built with purpose.
+</footer>
+
+<script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
