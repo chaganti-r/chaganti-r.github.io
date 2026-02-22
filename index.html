@@ -21,46 +21,24 @@
             --border-hover: rgba(0, 229, 160, 0.3);
             --radius: 16px;
             --radius-sm: 10px;
+            --purple: #8B5CF6;
+            --purple-dim: rgba(139, 92, 246, 0.08);
+            --purple-glow: rgba(139, 92, 246, 0.25);
+            --purple-border: rgba(139, 92, 246, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent) var(--bg-primary);
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-primary); }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
 
         body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
+            pointer-events: none; z-index: 9999;
         }
 
-        /* ── Navigation ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            z-index: 100;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(10,10,12,0.7);
-            border-bottom: 1px solid var(--border);
-        }
+        /* ── Nav ── */
+        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(10,10,12,0.7); border-bottom: 1px solid var(--border); }
         .nav-logo { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text-primary); text-decoration: none; }
         .nav-logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 32px; }
@@ -68,25 +46,9 @@
         .nav-links a:hover { color: var(--accent); }
 
         /* ── Hero ── */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 40px 80px;
-            position: relative;
-        }
-        .hero-bg-grid {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
-        }
-        .hero-glow {
-            position: absolute; top: -20%; right: -10%; width: 600px; height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            filter: blur(100px); opacity: 0.4;
-            animation: pulseGlow 6s ease-in-out infinite alternate;
-        }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 40px 80px; position: relative; }
+        .hero-bg-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent); }
+        .hero-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); filter: blur(100px); opacity: 0.4; animation: pulseGlow 6s ease-in-out infinite alternate; }
         @keyframes pulseGlow { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.5; transform: scale(1.1); } }
         .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: center; position: relative; z-index: 1; }
         .hero-text { animation: fadeUp 1s ease-out; }
@@ -98,21 +60,22 @@
         h1 .accent { color: var(--accent); }
         .hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; max-width: 520px; margin-bottom: 40px; }
         .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--bg-primary); border: none; border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 30px var(--accent-glow); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow); }
-        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.3s; }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-        .btn-outline-accent { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-hover); border-radius: var(--radius-sm); font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: all 0.3s; }
-        .btn-outline-accent:hover { background: rgba(0, 229, 160, 0.15); transform: translateY(-2px); }
 
-        /* ── Headshot ── */
+        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--bg-primary); border: none; border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 30px var(--accent-glow); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.3s; }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-outline-accent { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-hover); border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s; }
+        .btn-outline-accent:hover { background: rgba(0,229,160,0.15); transform: translateY(-2px); }
+
+        /* ── Photo ── */
         .hero-photo { position: relative; animation: fadeUp 1s ease-out 0.3s both; }
         .hero-photo-frame { width: 340px; height: 420px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); position: relative; }
         .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .hero-photo-frame .placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary)); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.85rem; }
         .hero-photo-accent { position: absolute; top: -12px; right: -12px; width: 100%; height: 100%; border-radius: var(--radius); border: 1px solid var(--accent); opacity: 0.15; z-index: -1; }
 
-        /* ── Section base ── */
+        /* ── Sections ── */
         section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
         .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
         .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 48px; }
@@ -128,48 +91,39 @@
         .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
         .stat-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px; }
 
+        /* ── Dynamic Comps Engine Showcase ── */
+        #dce { border-top: 1px solid var(--border); }
+        .dce-label { color: var(--purple); }
+        .dce-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .dce-hero-text h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; }
+        .dce-hero-text p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+        .dce-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+        .dce-feature { display: flex; align-items: flex-start; gap: 10px; }
+        .dce-feature-dot { width: 8px; height: 8px; background: var(--purple); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+        .dce-feature-text { font-size: 0.92rem; color: var(--text-secondary); }
+        .dce-feature-text strong { color: var(--text-primary); }
+        .dce-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+        .dce-tech span { padding: 4px 12px; border-radius: 6px; background: var(--purple-dim); border: 1px solid var(--purple-border); font-size: 0.75rem; color: var(--purple); font-weight: 500; }
+
+        .dce-hero-screenshot { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--purple-border); box-shadow: 0 20px 60px rgba(139,92,246,0.1); }
+        .dce-hero-screenshot img { width: 100%; display: block; }
+
+        /* Screenshot gallery */
+        .dce-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .dce-gallery-item { position: relative; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); transition: all 0.4s; cursor: pointer; }
+        .dce-gallery-item:hover { border-color: var(--purple-border); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(139,92,246,0.15); }
+        .dce-gallery-item img { width: 100%; display: block; }
+        .dce-gallery-item .caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(10,10,12,0.95)); font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
+        .dce-gallery-item .caption small { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.72rem; margin-top: 2px; }
+
         /* ── Work Deck Viewer ── */
         #deck { border-top: 1px solid var(--border); }
-        .deck-viewer-wrap {
-            position: relative;
-            width: 100%;
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-        }
-        .deck-viewer-wrap iframe {
-            width: 100%;
-            height: 560px;
-            border: none;
-            display: block;
-        }
-        .deck-viewer-fallback {
-            display: none;
-            padding: 60px 40px;
-            text-align: center;
-            color: var(--text-secondary);
-        }
+        .deck-viewer-wrap { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); }
+        .deck-viewer-wrap iframe { width: 100%; height: 560px; border: none; display: block; }
+        .deck-viewer-fallback { display: none; padding: 60px 40px; text-align: center; color: var(--text-secondary); }
         .deck-viewer-fallback p { margin-bottom: 20px; font-size: 1rem; }
-        .deck-actions {
-            display: flex;
-            gap: 16px;
-            margin-top: 24px;
-            justify-content: flex-end;
-        }
-        .btn-sm {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 20px;
-            border-radius: var(--radius-sm);
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .deck-actions { display: flex; gap: 16px; margin-top: 24px; justify-content: flex-end; }
+        .btn-sm { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.82rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s; }
         .btn-sm-primary { background: var(--accent); color: var(--bg-primary); border: none; }
         .btn-sm-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--accent-glow); }
         .btn-sm-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
@@ -182,7 +136,10 @@
         .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.4s; }
         .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .project-card:hover::before { opacity: 1; }
+        .project-card.purple-accent::before { background: linear-gradient(90deg, var(--purple), transparent); }
+        .project-card.purple-accent:hover { border-color: var(--purple-border); }
         .project-type { display: inline-block; padding: 4px 12px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+        .project-type.purple { background: var(--purple-dim); color: var(--purple); }
         .project-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
         .project-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
         .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -199,32 +156,30 @@
         .contact-link .icon svg { width: 18px; height: 18px; fill: var(--accent); }
         .contact-link .label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
         .contact-link .value { font-size: 0.95rem; }
-
         footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.8rem; }
+
+        /* ── Lightbox ── */
+        .lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; cursor: zoom-out; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); box-shadow: 0 0 80px rgba(139,92,246,0.2); }
+        .lightbox-close { position: absolute; top: 24px; right: 32px; color: white; font-size: 2rem; cursor: pointer; }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            nav { padding: 16px 24px; }
-            .nav-links { gap: 20px; }
-            .nav-links a { font-size: 0.78rem; }
-            .hero { padding: 100px 24px 60px; }
-            .hero-content { grid-template-columns: 1fr; gap: 48px; }
-            .hero-photo { order: -1; justify-self: center; }
-            .hero-photo-frame { width: 260px; height: 320px; }
+            nav { padding: 16px 24px; } .nav-links { gap: 20px; } .nav-links a { font-size: 0.78rem; }
+            .hero { padding: 100px 24px 60px; } .hero-content { grid-template-columns: 1fr; gap: 48px; }
+            .hero-photo { order: -1; justify-self: center; } .hero-photo-frame { width: 260px; height: 320px; }
             section { padding: 60px 24px; }
-            .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
+            .about-grid, .contact-grid, .dce-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .projects-grid, .dce-gallery { grid-template-columns: 1fr; }
             .deck-viewer-wrap iframe { height: 400px; }
         }
         @media (max-width: 600px) {
-            .nav-links { display: none; }
-            h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } h1 { font-size: 2.2rem; }
             .hero-ctas { flex-direction: column; }
-            .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .stat-card { padding: 20px; }
-            .deck-viewer-wrap iframe { height: 300px; }
-            .deck-actions { flex-direction: column; }
+            .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; } .stat-card { padding: 20px; }
+            .deck-viewer-wrap iframe { height: 300px; } .deck-actions { flex-direction: column; }
+            .dce-gallery { grid-template-columns: 1fr; }
         }
 
         .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -237,6 +192,7 @@
     <a href="#" class="nav-logo">ram<span>.</span></a>
     <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#dce">Engine</a>
         <a href="#deck">Work Deck</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
@@ -251,9 +207,7 @@
         <div class="hero-text">
             <div class="hero-tag">Open to Opportunities</div>
             <h1>Ram Chaganti<br><span class="accent">Finance & Strategy</span></h1>
-            <p class="hero-desc">
-                Junior at Rutgers Business School studying Finance with a focus in Economics and Political Science. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.
-            </p>
+            <p class="hero-desc">Junior at Rutgers Business School studying Finance with a focus in Economics and Political Science. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.</p>
             <div class="hero-ctas">
                 <a href="resume.pdf" class="btn-primary" download>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -278,10 +232,7 @@
 
 <!-- About -->
 <section id="about">
-    <div class="reveal">
-        <div class="section-label">About</div>
-        <div class="section-title">Background</div>
-    </div>
+    <div class="reveal"><div class="section-label">About</div><div class="section-title">Background</div></div>
     <div class="about-grid">
         <div class="about-text reveal">
             <p>I'm a junior finance student at Rutgers Business School with a concentration in Philosophy, Politics, and Economics. My interests sit at the intersection of capital markets, public policy, and emerging technology—particularly defense and AI.</p>
@@ -289,54 +240,61 @@
             <p>I'm currently building out technical skills in financial modeling, valuation, and data analysis as I recruit for investment banking and strategic finance roles across defense, technology, and financial services.</p>
         </div>
         <div class="about-stats reveal">
-            <div class="stat-card">
-                <div class="stat-number">$42K+</div>
-                <div class="stat-label">Revenue Generated Across Ventures</div>
+            <div class="stat-card"><div class="stat-number">$42K+</div><div class="stat-label">Revenue Generated Across Ventures</div></div>
+            <div class="stat-card"><div class="stat-number">40+</div><div class="stat-label">Team Members Managed</div></div>
+            <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Businesses Built</div></div>
+            <div class="stat-card"><div class="stat-number">Fin. + PPE</div><div class="stat-label">Finance + Philosophy, Political Science, and Economics</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Dynamic Comps Engine Showcase -->
+<section id="dce">
+    <div class="reveal"><div class="section-label dce-label">Featured Build</div><div class="section-title">Dynamic Comps Engine</div></div>
+    <div class="dce-hero-grid reveal">
+        <div class="dce-hero-text">
+            <h3>Real-time comparable company analysis powered by multi-factor similarity scoring</h3>
+            <p>A Python + Streamlit application that dynamically identifies peer companies, weights them by similarity across business model, financial profile, and market behavior dimensions, and derives fair value estimates using sector-specific multiples.</p>
+            <div class="dce-features">
+                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Multi-Factor Similarity</strong> — Scores peers across business, financial, and market dimensions</div></div>
+                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Sector-Aware Valuation</strong> — Growth-adjusted models with weighted EV/Revenue, EV/Gross, P/E, EV/EBITDA</div></div>
+                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Watchlist Signals</strong> — Portfolio scanning with buy/sell alerts based on fair value divergence</div></div>
+                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>VIX-Regime Detection</strong> — Adjusts context for Normal, Elevated, or Crisis market regimes</div></div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">40+</div>
-                <div class="stat-label">Team Members Managed</div>
+            <div class="dce-tech">
+                <span>Python</span><span>Streamlit</span><span>Yahoo Finance API</span><span>FRED</span><span>Pandas</span><span>NumPy</span>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Businesses Built</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Fin. + PPE</div>
-                <div class="stat-label">Finance + Philosophy, Political Science, and Economics</div>
-            </div>
+        </div>
+        <div class="dce-hero-screenshot" onclick="openLightbox(this.querySelector('img').src)">
+            <img src="screenshots/dce-analysis.png" alt="Dynamic Comps Engine — AAPL Analysis">
+        </div>
+    </div>
+    <div class="dce-gallery reveal">
+        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img src="screenshots/dce-home.png" alt="Home Dashboard">
+            <div class="caption">Home Dashboard<small>Quick analysis, market regime, VIX indicator</small></div>
+        </div>
+        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img src="screenshots/dce-comps.png" alt="Comparable Companies">
+            <div class="caption">Peer Group Detail<small>Similarity scoring, weight allocation, implied prices</small></div>
+        </div>
+        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+            <img src="screenshots/dce-watchlist.png" alt="Watchlist Dashboard">
+            <div class="caption">Watchlist & Signals<small>Active alerts, mispricing detection, scan results</small></div>
         </div>
     </div>
 </section>
 
 <!-- Work Deck Viewer -->
 <section id="deck">
-    <div class="reveal">
-        <div class="section-label">Portfolio Presentation</div>
-        <div class="section-title">Work Deck</div>
-    </div>
+    <div class="reveal"><div class="section-label">Portfolio Presentation</div><div class="section-title">Work Deck</div></div>
     <div class="reveal">
         <div class="deck-viewer-wrap">
-            <!--
-                HOW TO USE:
-                1. Upload "abhiram-work-deck.pdf" to your GitHub repo (same folder as index.html).
-                   Convert your .pptx to PDF first (File > Save As > PDF in PowerPoint).
-                2. The embedded viewer below will display the PDF with slide-through navigation.
-                3. If the PDF fails to load, a fallback message + download link appears instead.
-            -->
-            <iframe
-                id="deck-iframe"
-                src="abhiram-work-deck.pdf"
-                title="Finance & Strategy Work Deck"
-                loading="lazy"
-            ></iframe>
+            <iframe id="deck-iframe" src="abhiram-work-deck.pdf" title="Finance & Strategy Work Deck" loading="lazy"></iframe>
             <div class="deck-viewer-fallback" id="deck-fallback">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); margin-bottom: 12px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);margin-bottom:12px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 <p>PDF preview isn't available in this browser. Download the deck to view it.</p>
-                <a href="abhiram-work-deck.pptx" class="btn-outline-accent" download>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download Work Deck (.pptx)
-                </a>
+                <a href="abhiram-work-deck.pptx" class="btn-outline-accent" download>Download Work Deck (.pptx)</a>
             </div>
         </div>
         <div class="deck-actions">
@@ -354,11 +312,14 @@
 
 <!-- Projects -->
 <section id="projects">
-    <div class="reveal">
-        <div class="section-label">Projects & Case Studies</div>
-        <div class="section-title">Selected Work</div>
-    </div>
+    <div class="reveal"><div class="section-label">Projects & Case Studies</div><div class="section-title">Selected Work</div></div>
     <div class="projects-grid">
+        <div class="project-card purple-accent reveal">
+            <div class="project-type purple">Software / Valuation</div>
+            <div class="project-title">Dynamic Comps Engine</div>
+            <div class="project-desc">Built a real-time comparable company analysis platform that dynamically identifies and weights peer groups using multi-factor similarity scoring, derives fair value via sector-specific multiples, and generates watchlist signals for portfolio mispricing detection.</div>
+            <div class="project-tags"><span>Python</span><span>Streamlit</span><span>Yahoo Finance</span><span>FRED</span><span>Fair Value</span></div>
+        </div>
         <div class="project-card reveal">
             <div class="project-type">Valuation</div>
             <div class="project-title">DCF Analysis — NAS: ISSC</div>
@@ -388,10 +349,7 @@
 
 <!-- Contact -->
 <section id="contact">
-    <div class="reveal">
-        <div class="section-label">Contact</div>
-        <div class="section-title">Let's Connect</div>
-    </div>
+    <div class="reveal"><div class="section-label">Contact</div><div class="section-title">Let's Connect</div></div>
     <div class="contact-grid">
         <div class="contact-text reveal">I'm currently recruiting for summer 2026 investment banking and strategic finance roles. Open to conversations across defense tech, financial services, and technology.</div>
         <div class="contact-links reveal">
@@ -409,26 +367,26 @@
 
 <footer>&copy; 2025 Ram Chaganti.</footer>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged screenshot">
+</div>
+
 <script>
-    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // PDF fallback: if iframe fails to load the PDF, show fallback
     const deckIframe = document.getElementById('deck-iframe');
     const deckFallback = document.getElementById('deck-fallback');
-    deckIframe.addEventListener('error', function() {
-        deckIframe.style.display = 'none';
-        deckFallback.style.display = 'block';
-    });
-    // Also handle mobile browsers that can't render PDFs inline
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        deckIframe.style.display = 'none';
-        deckFallback.style.display = 'block';
-    }
-</script>
+    deckIframe.addEventListener('error', function() { deckIframe.style.display='none'; deckFallback.style.display='block'; });
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { deckIframe.style.display='none'; deckFallback.style.display='block'; }
 
+    function openLightbox(src) { document.getElementById('lightbox-img').src=src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow=''; }
+    document.addEventListener('keydown', e => { if (e.key==='Escape') closeLightbox(); });
+</script>
 </body>
 </html>
