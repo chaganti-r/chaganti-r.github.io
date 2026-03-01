@@ -1,392 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ram Chaganti — Finance & Strategy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0c;
-            --bg-secondary: #111114;
-            --bg-card: #16161a;
-            --text-primary: #f0eff4;
-            --text-secondary: #94939e;
-            --accent: #00e5a0;
-            --accent-dim: rgba(0, 229, 160, 0.08);
-            --accent-glow: rgba(0, 229, 160, 0.25);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(0, 229, 160, 0.3);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --purple: #8B5CF6;
-            --purple-dim: rgba(139, 92, 246, 0.08);
-            --purple-glow: rgba(139, 92, 246, 0.25);
-            --purple-border: rgba(139, 92, 246, 0.3);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ram Chaganti — Finance & Strategy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --border: #222222;
+      --border2: #2a2a2a;
+      --text: #e8e8e8;
+      --text2: #999999;
+      --text3: #555555;
+      --accent: #c8a96e;
+      --accent2: #a08050;
+      --green: #4ade80;
+      --tag-bg: #1a1a1a;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-primary); }
-        body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 9999;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* ── Nav ── */
-        nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(10,10,12,0.7); border-bottom: 1px solid var(--border); }
-        .nav-logo { font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text-primary); text-decoration: none; }
-        .nav-logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* ── Hero ── */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 40px 80px; position: relative; }
-        .hero-bg-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent); }
-        .hero-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); filter: blur(100px); opacity: 0.4; animation: pulseGlow 6s ease-in-out infinite alternate; }
-        @keyframes pulseGlow { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.5; transform: scale(1.1); } }
-        .hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 380px; gap: 80px; align-items: center; position: relative; z-index: 1; }
-        .hero-text { animation: fadeUp 1s ease-out; }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px; border: 1px solid var(--border-hover); background: var(--accent-dim); font-size: 0.8rem; font-weight: 500; color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 28px; }
-        .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 2s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        h1 { font-family: 'Outfit', sans-serif; font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 24px; }
-        h1 .accent { color: var(--accent); }
-        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; max-width: 520px; margin-bottom: 40px; }
-        .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 60px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
 
-        .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent); color: var(--bg-primary); border: none; border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; text-decoration: none; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 30px var(--accent-glow); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow); }
-        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: transparent; color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.3s; }
-        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-        .btn-outline-accent { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-hover); border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s; }
-        .btn-outline-accent:hover { background: rgba(0,229,160,0.15); transform: translateY(-2px); }
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 80px 48px 0;
+      max-width: 1200px; margin: 0 auto;
+      gap: 80px;
+    }
+    .hero-content { flex: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 12px; color: var(--green); letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(38px, 5vw, 64px); font-weight: 800; line-height: 1.05; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub { font-size: 16px; color: var(--text2); max-width: 480px; line-height: 1.8; margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 6px; font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+      font-family: 'DM Sans', sans-serif; letter-spacing: 0.02em;
+    }
+    .btn-primary { background: var(--accent); color: #0a0a0a; }
+    .btn-primary:hover { background: #d9bc85; }
+    .btn-secondary { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-image { width: 280px; height: 280px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border2); background: var(--bg3); flex-shrink: 0; position: relative; }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 13px; }
 
-        /* ── Photo ── */
-        .hero-photo { position: relative; animation: fadeUp 1s ease-out 0.3s both; }
-        .hero-photo-frame { width: 340px; height: 420px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); position: relative; }
-        .hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .hero-photo-frame .placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, var(--bg-card), var(--bg-secondary)); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 0.85rem; }
-        .hero-photo-accent { position: absolute; top: -12px; right: -12px; width: 100%; height: 100%; border-radius: var(--radius); border: 1px solid var(--accent); opacity: 0.15; z-index: -1; }
+    /* ─── SECTIONS ─── */
+    section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 600; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 60px; }
 
-        /* ── Sections ── */
-        section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-        .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 48px; }
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-text p { color: var(--text2); line-height: 1.9; margin-bottom: 16px; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
 
-        /* ── About ── */
-        #about { border-top: 1px solid var(--border); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .about-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; }
-        .about-text p + p { margin-top: 16px; }
-        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-content: start; }
-        .stat-card { padding: 28px; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border); transition: all 0.3s; }
-        .stat-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-        .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
-        .stat-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 4px; }
+    /* ─── DCE FEATURE ─── */
+    .dce-section { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 60px; }
+    .dce-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; margin-bottom: 40px; }
+    .dce-header-left h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .dce-header-left p { color: var(--text2); max-width: 460px; line-height: 1.8; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+    .feature-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+    .feature-item strong { display: block; font-size: 13px; color: var(--text); margin-bottom: 4px; }
+    .feature-item span { font-size: 13px; color: var(--text3); }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+    .tag { background: var(--tag-bg); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 12px; color: var(--text2); }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .screenshot-card { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--bg3); }
+    .screenshot-card img { width: 100%; display: block; }
+    .screenshot-label { padding: 10px 14px; }
+    .screenshot-label strong { display: block; font-size: 12px; color: var(--text); }
+    .screenshot-label span { font-size: 11px; color: var(--text3); }
 
-        /* ── Dynamic Comps Engine Showcase ── */
-        #dce { border-top: 1px solid var(--border); }
-        .dce-label { color: var(--purple); }
-        .dce-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-        .dce-hero-text h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; }
-        .dce-hero-text p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
-        .dce-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
-        .dce-feature { display: flex; align-items: flex-start; gap: 10px; }
-        .dce-feature-dot { width: 8px; height: 8px; background: var(--purple); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
-        .dce-feature-text { font-size: 0.92rem; color: var(--text-secondary); }
-        .dce-feature-text strong { color: var(--text-primary); }
-        .dce-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-        .dce-tech span { padding: 4px 12px; border-radius: 6px; background: var(--purple-dim); border: 1px solid var(--purple-border); font-size: 0.75rem; color: var(--purple); font-weight: 500; }
+    /* ─── WORK DECK ─── */
+    .deck-wrapper { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 60px; }
+    .deck-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .deck-preview { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; aspect-ratio: 16/9; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .deck-preview iframe { width: 100%; height: 100%; border: none; }
+    .deck-text h2 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+    .deck-text p { color: var(--text2); margin-bottom: 28px; line-height: 1.8; }
+    .deck-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-        .dce-hero-screenshot { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--purple-border); box-shadow: 0 20px 60px rgba(139,92,246,0.1); }
-        .dce-hero-screenshot img { width: 100%; display: block; }
+    /* ─── PROJECTS ─── */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+    .project-type { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .project-card h3 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+    .project-card p { font-size: 13px; color: var(--text2); line-height: 1.8; margin-bottom: 18px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
-        /* Screenshot gallery */
-        .dce-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .dce-gallery-item { position: relative; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); transition: all 0.4s; cursor: pointer; }
-        .dce-gallery-item:hover { border-color: var(--purple-border); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(139,92,246,0.15); }
-        .dce-gallery-item img { width: 100%; display: block; }
-        .dce-gallery-item .caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px; background: linear-gradient(transparent, rgba(10,10,12,0.95)); font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
-        .dce-gallery-item .caption small { display: block; font-weight: 400; color: var(--text-secondary); font-size: 0.72rem; margin-top: 2px; }
+    /* ─── HEAR ME TALK ─── */
+    .talk-intro { color: var(--text2); max-width: 560px; line-height: 1.8; margin-bottom: 56px; }
+    .talk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .talk-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; transition: border-color 0.25s, transform 0.25s;
+    }
+    .talk-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .talk-embed {
+      position: relative; width: 100%; aspect-ratio: 16/9;
+      background: var(--bg3); overflow: hidden;
+    }
+    .talk-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .talk-embed-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      color: var(--text3); font-size: 13px; text-align: center; padding: 20px;
+    }
+    .talk-embed-placeholder .play-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(200,169,110,0.12); border: 1px solid rgba(200,169,110,0.25);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .talk-embed-placeholder .play-icon svg { width: 18px; height: 18px; fill: var(--accent); margin-left: 3px; }
+    .talk-meta { padding: 20px 22px; }
+    .talk-topic { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    .talk-meta h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+    .talk-meta p { font-size: 13px; color: var(--text3); line-height: 1.7; }
+    .talk-duration { display: inline-block; margin-top: 12px; font-size: 11px; color: var(--text3); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; letter-spacing: 0.04em; }
 
-        /* ── Work Deck Viewer ── */
-        #deck { border-top: 1px solid var(--border); }
-        .deck-viewer-wrap { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); }
-        .deck-viewer-wrap iframe { width: 100%; height: 560px; border: none; display: block; }
-        .deck-viewer-fallback { display: none; padding: 60px 40px; text-align: center; color: var(--text-secondary); }
-        .deck-viewer-fallback p { margin-bottom: 20px; font-size: 1rem; }
-        .deck-actions { display: flex; gap: 16px; margin-top: 24px; justify-content: flex-end; }
-        .btn-sm { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: var(--radius-sm); font-family: 'Outfit'; font-size: 0.82rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s; }
-        .btn-sm-primary { background: var(--accent); color: var(--bg-primary); border: none; }
-        .btn-sm-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--accent-glow); }
-        .btn-sm-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
-        .btn-sm-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    /* ─── CONTACT ─── */
+    .contact-wrapper { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .contact-left h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+    .contact-left p { color: var(--text2); line-height: 1.8; max-width: 380px; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: border-color 0.2s; }
+    .contact-link:hover { border-color: var(--accent); }
+    .contact-link-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-link-icon svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; }
+    .contact-link-text strong { display: block; font-size: 13px; color: var(--text); }
+    .contact-link-text span { font-size: 12px; color: var(--text3); }
 
-        /* ── Projects ── */
-        #projects { border-top: 1px solid var(--border); }
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
-        .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; transition: all 0.4s; position: relative; overflow: hidden; }
-        .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: opacity 0.4s; }
-        .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .project-card:hover::before { opacity: 1; }
-        .project-card.purple-accent::before { background: linear-gradient(90deg, var(--purple), transparent); }
-        .project-card.purple-accent:hover { border-color: var(--purple-border); }
-        .project-type { display: inline-block; padding: 4px 12px; border-radius: 100px; background: var(--accent-dim); color: var(--accent); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
-        .project-type.purple { background: var(--purple-dim); color: var(--purple); }
-        .project-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
-        .project-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
-        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .project-tags span { padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); }
+    /* ─── FOOTER ─── */
+    footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
+    footer p { font-size: 13px; color: var(--text3); }
 
-        /* ── Contact ── */
-        #contact { border-top: 1px solid var(--border); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-        .contact-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; }
-        .contact-links { display: flex; flex-direction: column; gap: 16px; }
-        .contact-link { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); text-decoration: none; color: var(--text-primary); font-weight: 500; transition: all 0.3s; }
-        .contact-link:hover { border-color: var(--border-hover); transform: translateX(4px); }
-        .contact-link .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .contact-link .icon svg { width: 18px; height: 18px; fill: var(--accent); }
-        .contact-link .label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
-        .contact-link .value { font-size: 0.95rem; }
-        footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.8rem; }
+    /* ─── LIGHTBOX ─── */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+    .lightbox.active { display: flex; }
+    .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lightbox-inner img { max-width: 100%; max-height: 90vh; border-radius: 8px; display: block; }
+    .lightbox-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: var(--text2); font-size: 24px; cursor: pointer; }
 
-        /* ── Lightbox ── */
-        .lightbox { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px); align-items: center; justify-content: center; cursor: zoom-out; }
-        .lightbox.active { display: flex; }
-        .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: var(--radius); box-shadow: 0 0 80px rgba(139,92,246,0.2); }
-        .lightbox-close { position: absolute; top: 24px; right: 32px; color: white; font-size: 2rem; cursor: pointer; }
-
-        /* ── Responsive ── */
-        @media (max-width: 900px) {
-            nav { padding: 16px 24px; } .nav-links { gap: 20px; } .nav-links a { font-size: 0.78rem; }
-            .hero { padding: 100px 24px 60px; } .hero-content { grid-template-columns: 1fr; gap: 48px; }
-            .hero-photo { order: -1; justify-self: center; } .hero-photo-frame { width: 260px; height: 320px; }
-            section { padding: 60px 24px; }
-            .about-grid, .contact-grid, .dce-hero-grid { grid-template-columns: 1fr; gap: 40px; }
-            .projects-grid, .dce-gallery { grid-template-columns: 1fr; }
-            .deck-viewer-wrap iframe { height: 400px; }
-        }
-        @media (max-width: 600px) {
-            .nav-links { display: none; } h1 { font-size: 2.2rem; }
-            .hero-ctas { flex-direction: column; }
-            .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; } .stat-card { padding: 20px; }
-            .deck-viewer-wrap iframe { height: 300px; } .deck-actions { flex-direction: column; }
-            .dce-gallery { grid-template-columns: 1fr; }
-        }
-
-        .reveal { opacity: 0; transform: translateY(24px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-    </style>
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { flex-direction: column; padding: 100px 24px 40px; gap: 40px; }
+      .hero-image { width: 200px; height: 200px; }
+      section { padding: 60px 24px; }
+      .about-grid, .dce-header, .deck-inner, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .feature-list, .screenshots-grid, .projects-grid, .talk-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .dce-section, .deck-wrapper, .contact-wrapper { padding: 36px 24px; }
+      footer { flex-direction: column; gap: 8px; padding: 24px; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-    <a href="#" class="nav-logo">ram<span>.</span></a>
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#dce">Engine</a>
-        <a href="#deck">Work Deck</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </div>
+  <a href="#" class="nav-logo">ram.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#dce">Engine</a></li>
+    <li><a href="#deck">Work Deck</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#talk">Hear Me Talk</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-        <div class="hero-text">
-            <div class="hero-tag">Open to Opportunities</div>
-            <h1>Ram Chaganti<br><span class="accent">Finance & Strategy</span></h1>
-            <p class="hero-desc">Junior at Rutgers Business School studying Finance with a focus in Economics and Political Science. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.</p>
-            <div class="hero-ctas">
-                <a href="resume.pdf" class="btn-primary" download>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Resume
-                </a>
-                <a href="abhiram-work-deck.pptx" class="btn-outline-accent" download>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    Work Deck
-                </a>
-                <a href="#projects" class="btn-secondary">View Projects →</a>
-            </div>
-        </div>
-        <div class="hero-photo">
-            <div class="hero-photo-frame">
-                <img src="headshot.jpg" alt="Ram Chaganti" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="placeholder" style="display:none;">Your photo here</div>
-            </div>
-            <div class="hero-photo-accent"></div>
-        </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Open to Opportunities</div>
+    <h1>Ram Chaganti<br /><span>Finance & Strategy</span></h1>
+    <p class="hero-sub">Junior at Rutgers Business School studying Finance with a focus in Economics and Political Science. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.</p>
+    <div class="hero-actions">
+      <a href="resume.pdf" class="btn btn-primary">Resume</a>
+      <a href="abhiram-work-deck.pptx" class="btn btn-secondary">Work Deck</a>
+      <a href="#projects" class="btn btn-secondary">View Projects →</a>
     </div>
-</section>
+  </div>
+  <div class="hero-image">
+    <img src="headshot.jpg" alt="Ram Chaganti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+    <div class="hero-image-placeholder" style="display:none;">Your photo here</div>
+  </div>
+</div>
 
-<!-- About -->
+<!-- ABOUT -->
 <section id="about">
-    <div class="reveal"><div class="section-label">About</div><div class="section-title">Background</div></div>
-    <div class="about-grid">
-        <div class="about-text reveal">
-            <p>I'm a junior finance student at Rutgers Business School with a concentration in Philosophy, Politics, and Economics. My interests sit at the intersection of capital markets, public policy, and emerging technology—particularly defense and AI.</p>
-            <p>Outside the classroom, I've built and operated multiple businesses—from a 40-person snow removal operation to a vintage clothing resale business and a recording studio. These ventures gave me hands-on experience with P&L management, unit economics, and scaling operations from zero.</p>
-            <p>I'm currently building out technical skills in financial modeling, valuation, and data analysis as I recruit for investment banking and strategic finance roles across defense, technology, and financial services.</p>
-        </div>
-        <div class="about-stats reveal">
-            <div class="stat-card"><div class="stat-number">$42K+</div><div class="stat-label">Revenue Generated Across Ventures</div></div>
-            <div class="stat-card"><div class="stat-number">40+</div><div class="stat-label">Team Members Managed</div></div>
-            <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Businesses Built</div></div>
-            <div class="stat-card"><div class="stat-number">Fin. + PPE</div><div class="stat-label">Finance + Philosophy, Political Science, and Economics</div></div>
-        </div>
+  <div class="section-label">Background</div>
+  <h2 class="section-title">About</h2>
+  <div class="section-divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a junior finance student at Rutgers Business School with a concentration in Philosophy, Politics, and Economics. My interests sit at the intersection of capital markets, public policy, and emerging technology—particularly defense and AI.</p>
+      <p>Outside the classroom, I've built and operated multiple businesses—from a 40-person snow removal operation to a vintage clothing resale business and a recording studio. These ventures gave me hands-on experience with P&L management, unit economics, and scaling operations from zero.</p>
+      <p>I'm currently building out technical skills in financial modeling, valuation, and data analysis as I recruit for investment banking and strategic finance roles across defense, technology, and financial services.</p>
     </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">$42K+</div>
+        <div class="stat-label">Revenue Generated Across Ventures</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">40+</div>
+        <div class="stat-label">Team Members Managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Businesses Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Fin. + PPE</div>
+        <div class="stat-label">Finance + Philosophy, Political Science, and Economics</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Dynamic Comps Engine Showcase -->
-<section id="dce">
-    <div class="reveal"><div class="section-label dce-label">Featured Build</div><div class="section-title">Dynamic Comps Engine</div></div>
-    <div class="dce-hero-grid reveal">
-        <div class="dce-hero-text">
-            <h3>Real-time comparable company analysis powered by multi-factor similarity scoring</h3>
-            <p>A Python + Streamlit application that dynamically identifies peer companies, weights them by similarity across business model, financial profile, and market behavior dimensions, and derives fair value estimates using sector-specific multiples.</p>
-            <div class="dce-features">
-                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Multi-Factor Similarity</strong> — Scores peers across business, financial, and market dimensions</div></div>
-                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Sector-Aware Valuation</strong> — Growth-adjusted models with weighted EV/Revenue, EV/Gross, P/E, EV/EBITDA</div></div>
-                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>Watchlist Signals</strong> — Portfolio scanning with buy/sell alerts based on fair value divergence</div></div>
-                <div class="dce-feature"><div class="dce-feature-dot"></div><div class="dce-feature-text"><strong>VIX-Regime Detection</strong> — Adjusts context for Normal, Elevated, or Crisis market regimes</div></div>
-            </div>
-            <div class="dce-tech">
-                <span>Python</span><span>Streamlit</span><span>Yahoo Finance API</span><span>FRED</span><span>Pandas</span><span>NumPy</span>
-            </div>
-        </div>
-        <div class="dce-hero-screenshot" onclick="openLightbox(this.querySelector('img').src)">
-            <img src="screenshots/dce-analysis.png" alt="Dynamic Comps Engine — AAPL Analysis">
-        </div>
+<!-- DCE FEATURE -->
+<section id="dce" style="padding-top:0;">
+  <div class="section-label">Featured Build</div>
+  <h2 class="section-title">Dynamic Comps Engine</h2>
+  <div class="section-divider"></div>
+  <div class="dce-section">
+    <div class="dce-header">
+      <div class="dce-header-left">
+        <h2>Real-time comparable company analysis powered by multi-factor similarity scoring</h2>
+        <p>A Python + Streamlit application that dynamically identifies peer companies, weights them by similarity across business model, financial profile, and market behavior dimensions, and derives fair value estimates using sector-specific multiples.</p>
+      </div>
     </div>
-    <div class="dce-gallery reveal">
-        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-            <img src="screenshots/dce-home.png" alt="Home Dashboard">
-            <div class="caption">Home Dashboard<small>Quick analysis, market regime, VIX indicator</small></div>
-        </div>
-        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-            <img src="screenshots/dce-comps.png" alt="Comparable Companies">
-            <div class="caption">Peer Group Detail<small>Similarity scoring, weight allocation, implied prices</small></div>
-        </div>
-        <div class="dce-gallery-item" onclick="openLightbox(this.querySelector('img').src)">
-            <img src="screenshots/dce-watchlist.png" alt="Watchlist Dashboard">
-            <div class="caption">Watchlist & Signals<small>Active alerts, mispricing detection, scan results</small></div>
-        </div>
+    <div class="feature-list">
+      <div class="feature-item"><strong>Multi-Factor Similarity</strong><span>Scores peers across business, financial, and market dimensions</span></div>
+      <div class="feature-item"><strong>Sector-Aware Valuation</strong><span>Growth-adjusted models with weighted EV/Revenue, EV/Gross, P/E, EV/EBITDA</span></div>
+      <div class="feature-item"><strong>Watchlist Signals</strong><span>Portfolio scanning with buy/sell alerts based on fair value divergence</span></div>
+      <div class="feature-item"><strong>VIX-Regime Detection</strong><span>Adjusts context for Normal, Elevated, or Crisis market regimes</span></div>
     </div>
+    <div class="tech-stack">
+      <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Yahoo Finance API</span><span class="tag">FRED</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+    </div>
+    <div class="screenshots-grid">
+      <div class="screenshot-card">
+        <img src="dce-home.png" alt="Home Dashboard" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
+        <div class="screenshot-label"><strong>Home Dashboard</strong><span>Quick analysis, market regime, VIX indicator</span></div>
+      </div>
+      <div class="screenshot-card">
+        <img src="dce-comps.png" alt="Comparable Companies" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
+        <div class="screenshot-label"><strong>Peer Group Detail</strong><span>Similarity scoring, weight allocation, implied prices</span></div>
+      </div>
+      <div class="screenshot-card">
+        <img src="dce-watchlist.png" alt="Watchlist Dashboard" onclick="openLightbox(this.src)" style="cursor:zoom-in;" />
+        <div class="screenshot-label"><strong>Watchlist & Signals</strong><span>Active alerts, mispricing detection, scan results</span></div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Work Deck Viewer -->
-<section id="deck">
-    <div class="reveal"><div class="section-label">Portfolio Presentation</div><div class="section-title">Work Deck</div></div>
-    <div class="reveal">
-        <div class="deck-viewer-wrap">
-            <iframe id="deck-iframe" src="abhiram-work-deck.pdf" title="Finance & Strategy Work Deck" loading="lazy"></iframe>
-            <div class="deck-viewer-fallback" id="deck-fallback">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);margin-bottom:12px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                <p>PDF preview isn't available in this browser. Download the deck to view it.</p>
-                <a href="abhiram-work-deck.pptx" class="btn-outline-accent" download>Download Work Deck (.pptx)</a>
-            </div>
-        </div>
+<!-- WORK DECK -->
+<section id="deck" style="padding-top:0;">
+  <div class="section-label">Portfolio Presentation</div>
+  <h2 class="section-title">Work Deck</h2>
+  <div class="section-divider"></div>
+  <div class="deck-wrapper">
+    <div class="deck-inner">
+      <div class="deck-preview">
+        <iframe src="abhiram-work-deck.pdf" title="Work Deck PDF Preview"></iframe>
+      </div>
+      <div class="deck-text">
+        <h2>Comprehensive Finance Portfolio</h2>
+        <p>PDF preview isn't available in this browser. Download the deck to view it.</p>
         <div class="deck-actions">
-            <a href="abhiram-work-deck.pdf" class="btn-sm btn-sm-secondary" target="_blank">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Open PDF Fullscreen
-            </a>
-            <a href="abhiram-work-deck.pptx" class="btn-sm btn-sm-primary" download>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download .pptx
-            </a>
+          <a href="abhiram-work-deck.pdf" target="_blank" class="btn btn-secondary">Open PDF Fullscreen</a>
+          <a href="abhiram-work-deck.pptx" class="btn btn-primary">Download .pptx</a>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Projects -->
-<section id="projects">
-    <div class="reveal"><div class="section-label">Projects & Case Studies</div><div class="section-title">Selected Work</div></div>
-    <div class="projects-grid">
-        <div class="project-card purple-accent reveal">
-            <div class="project-type purple">Software / Valuation</div>
-            <div class="project-title">Dynamic Comps Engine</div>
-            <div class="project-desc">Built a real-time comparable company analysis platform that dynamically identifies and weights peer groups using multi-factor similarity scoring, derives fair value via sector-specific multiples, and generates watchlist signals for portfolio mispricing detection.</div>
-            <div class="project-tags"><span>Python</span><span>Streamlit</span><span>Yahoo Finance</span><span>FRED</span><span>Fair Value</span></div>
-        </div>
-        <div class="project-card reveal">
-            <div class="project-type">Valuation</div>
-            <div class="project-title">DCF Analysis — NAS: ISSC</div>
-            <div class="project-desc">Built a full discounted cash flow model projecting 5-year financials, calculating WACC, and deriving an implied share price with sensitivity analysis.</div>
-            <div class="project-tags"><span>Excel</span><span>DCF</span><span>WACC</span><span>Sensitivity Analysis</span></div>
-        </div>
-        <div class="project-card reveal">
-            <div class="project-type">M&A</div>
-            <div class="project-title">Merger Model — Target: NAS: ISSC, Acquirer: NYSE: BA</div>
-            <div class="project-desc">Constructed an accretion/dilution analysis for a hypothetical acquisition, modeling purchase price allocation, synergies, and pro forma EPS impact.</div>
-            <div class="project-tags"><span>Merger Model</span><span>Accretion / Dilution</span><span>Synergies</span></div>
-        </div>
-        <div class="project-card reveal">
-            <div class="project-type">LBO</div>
-            <div class="project-title">Leveraged Buyout — NYSE: DCO</div>
-            <div class="project-desc">Developing a leveraged buyout model analyzing entry/exit multiples, debt schedules, and sponsor returns under multiple scenarios.</div>
-            <div class="project-tags"><span>LBO</span><span>Debt Schedule</span><span>IRR Analysis</span></div>
-        </div>
-        <div class="project-card reveal">
-            <div class="project-type">Entrepreneurship</div>
-            <div class="project-title">SnowCo — Snow Removal Operation</div>
-            <div class="project-desc">Founded and scaled a seasonal snow removal service to $18K+ in revenue with a team of 40. Managed operations, client acquisition, and crew logistics across multiple zones.</div>
-            <div class="project-tags"><span>P&L Management</span><span>Operations</span><span>Team Leadership</span></div>
-        </div>
+<!-- PROJECTS -->
+<section id="projects" style="padding-top:0;">
+  <div class="section-label">Projects & Case Studies</div>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="section-divider"></div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-type">Software / Valuation</div>
+      <h3>Dynamic Comps Engine</h3>
+      <p>Built a real-time comparable company analysis platform that dynamically identifies and weights peer groups using multi-factor similarity scoring, derives fair value via sector-specific multiples, and generates watchlist signals for portfolio mispricing detection.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Yahoo Finance</span><span class="tag">FRED</span><span class="tag">Fair Value</span>
+      </div>
     </div>
+    <div class="project-card">
+      <div class="project-type">Valuation</div>
+      <h3>DCF Analysis — NAS: ISSC</h3>
+      <p>Built a full discounted cash flow model projecting 5-year financials, calculating WACC, and deriving an implied share price with sensitivity analysis.</p>
+      <div class="project-tags">
+        <span class="tag">Excel</span><span class="tag">DCF</span><span class="tag">WACC</span><span class="tag">Sensitivity Analysis</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">M&A</div>
+      <h3>Merger Model — Target: NAS: ISSC, Acquirer: NYSE: BA</h3>
+      <p>Constructed an accretion/dilution analysis for a hypothetical acquisition, modeling purchase price allocation, synergies, and pro forma EPS impact.</p>
+      <div class="project-tags">
+        <span class="tag">Merger Model</span><span class="tag">Accretion / Dilution</span><span class="tag">Synergies</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">LBO</div>
+      <h3>Leveraged Buyout — NYSE: DCO</h3>
+      <p>Developing a leveraged buyout model analyzing entry/exit multiples, debt schedules, and sponsor returns under multiple scenarios.</p>
+      <div class="project-tags">
+        <span class="tag">LBO</span><span class="tag">Debt Schedule</span><span class="tag">IRR Analysis</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-type">Entrepreneurship</div>
+      <h3>SnowCo — Snow Removal Operation</h3>
+      <p>Founded and scaled a seasonal snow removal service to $18K+ in revenue with a team of 40. Managed operations, client acquisition, and crew logistics across multiple zones.</p>
+      <div class="project-tags">
+        <span class="tag">P&L Management</span><span class="tag">Operations</span><span class="tag">Team Leadership</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Contact -->
-<section id="contact">
-    <div class="reveal"><div class="section-label">Contact</div><div class="section-title">Let's Connect</div></div>
-    <div class="contact-grid">
-        <div class="contact-text reveal">I'm currently recruiting for summer 2026 investment banking and strategic finance roles. Open to conversations across defense tech, financial services, and technology.</div>
-        <div class="contact-links reveal">
-            <a href="mailto:ac2547@scarletmail.rutgers.edu" class="contact-link">
-                <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-                <div><div class="label">Email</div><div class="value">ac2547@scarletmail.rutgers.edu</div></div>
-            </a>
-            <a href="https://linkedin.com/in/abhiram-chaganti/" target="_blank" class="contact-link">
-                <div class="icon"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></div>
-                <div><div class="label">LinkedIn</div><div class="value">linkedin.com/in/abhiram-chaganti/</div></div>
-            </a>
+<!-- HEAR ME TALK -->
+<section id="talk" style="padding-top:0;">
+  <div class="section-label">Hear Me Talk</div>
+  <h2 class="section-title">Walkthroughs & Breakdowns</h2>
+  <div class="section-divider"></div>
+  <p class="talk-intro">Short recordings where I walk through projects, explain the methodology, and discuss the thinking behind the work — no slides, no script, just the analysis.</p>
+  <div class="talk-grid">
+
+    <!-- Card 1 — replace LOOM_ID_1 with your actual Loom share ID -->
+    <div class="talk-card">
+      <div class="talk-embed">
+        <!-- To embed: replace LOOM_ID_1 with the ID from your Loom share URL -->
+        <!-- e.g. https://www.loom.com/share/abc123def456  → use abc123def456 -->
+        <!-- <iframe src="https://www.loom.com/embed/LOOM_ID_1" allowfullscreen></iframe> -->
+        <div class="talk-embed-placeholder">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span>Paste your Loom embed ID here</span>
         </div>
+      </div>
+      <div class="talk-meta">
+        <div class="talk-topic">Valuation</div>
+        <h3>Dynamic Comps Engine — Live Demo & Methodology</h3>
+        <p>Walking through the similarity scoring algorithm, sector-specific multiples, and VIX regime detection in a live session.</p>
+        <span class="talk-duration">~X min</span>
+      </div>
     </div>
+
+    <!-- Card 2 -->
+    <div class="talk-card">
+      <div class="talk-embed">
+        <!-- <iframe src="https://www.loom.com/embed/LOOM_ID_2" allowfullscreen></iframe> -->
+        <div class="talk-embed-placeholder">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span>Paste your Loom embed ID here</span>
+        </div>
+      </div>
+      <div class="talk-meta">
+        <div class="talk-topic">M&A</div>
+        <h3>Boeing / ISSC Merger Model Breakdown</h3>
+        <p>Explaining the accretion/dilution analysis, purchase price allocation assumptions, and how synergies were modeled.</p>
+        <span class="talk-duration">~X min</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="talk-card">
+      <div class="talk-embed">
+        <!-- <iframe src="https://www.loom.com/embed/LOOM_ID_3" allowfullscreen></iframe> -->
+        <div class="talk-embed-placeholder">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span>Paste your Loom embed ID here</span>
+        </div>
+      </div>
+      <div class="talk-meta">
+        <div class="talk-topic">DCF</div>
+        <h3>ISSC DCF — WACC Build & Sensitivity</h3>
+        <p>Walking through the five-year projection, WACC calculation, and how the sensitivity table was structured around key assumptions.</p>
+        <span class="talk-duration">~X min</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<footer>&copy; 2025 Ram Chaganti.</footer>
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0;">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <div class="section-divider"></div>
+  <div class="contact-wrapper">
+    <div class="contact-left">
+      <h2>Open to Summer 2026 Roles</h2>
+      <p>I'm currently recruiting for summer 2026 investment banking and strategic finance roles. Open to conversations across defense tech, financial services, and technology.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:ac2547@scarletmail.rutgers.edu" class="contact-link">
+        <div class="contact-link-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <strong>Email</strong>
+          <span>ac2547@scarletmail.rutgers.edu</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/abhiram-chaganti/" target="_blank" class="contact-link">
+        <div class="contact-link-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div class="contact-link-text">
+          <strong>LinkedIn</strong>
+          <span>linkedin.com/in/abhiram-chaganti/</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
-<!-- Lightbox -->
+<footer style="border-top: 1px solid var(--border); padding: 28px 48px; display:flex; align-items:center; justify-content:space-between;">
+  <p style="font-size:13px; color:var(--text3);">© 2025 Ram Chaganti.</p>
+  <p style="font-size:13px; color:var(--text3);">Rutgers Business School</p>
+</footer>
+
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="Enlarged screenshot">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
 </div>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    const deckIframe = document.getElementById('deck-iframe');
-    const deckFallback = document.getElementById('deck-fallback');
-    deckIframe.addEventListener('error', function() { deckIframe.style.display='none'; deckFallback.style.display='block'; });
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) { deckIframe.style.display='none'; deckFallback.style.display='block'; }
-
-    function openLightbox(src) { document.getElementById('lightbox-img').src=src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow='hidden'; }
-    function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow=''; }
-    document.addEventListener('keydown', e => { if (e.key==='Escape') closeLightbox(); });
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 </script>
+
 </body>
 </html>
