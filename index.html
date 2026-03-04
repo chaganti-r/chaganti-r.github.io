@@ -164,68 +164,6 @@
     .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
     .stat-label { font-size: 0.72rem; color: var(--text-secondary); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* ─── DCE FEATURE ─── */
-    .dce-section {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 60px;
-      position: relative; overflow: hidden;
-    }
-    .dce-section::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--purple), transparent);
-    }
-    .dce-header { margin-bottom: 40px; }
-    .dce-header h2 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-    .dce-header p { color: var(--text-secondary); max-width: 560px; line-height: 1.85; font-weight: 300; }
-
-    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
-    .feature-item {
-      background: var(--bg-primary); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 18px 22px;
-      transition: border-color 0.3s;
-    }
-    .feature-item:hover { border-color: var(--border-hover); }
-    .feature-item strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-primary); margin-bottom: 5px; }
-    .feature-item span { font-size: 0.82rem; color: var(--text-secondary); }
-
-    .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
-    .tag {
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      border-radius: 6px; padding: 5px 12px;
-      font-size: 0.77rem; color: var(--text-secondary);
-      font-weight: 500;
-    }
-    .tag.green { background: var(--accent-dim); border-color: rgba(0,229,160,0.2); color: var(--accent); }
-    .tag.purple { background: var(--purple-dim); border-color: rgba(139,92,246,0.2); color: var(--purple); }
-
-    .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .screenshot-card {
-      border-radius: var(--radius-sm); overflow: hidden;
-      border: 1px solid var(--border); background: var(--bg-primary);
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .screenshot-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-    .screenshot-card img { width: 100%; display: block; cursor: zoom-in; }
-    .screenshot-label { padding: 12px 16px; }
-    .screenshot-label strong { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-primary); }
-    .screenshot-label span { font-size: 0.75rem; color: var(--text-secondary); }
-
-    /* ─── WORK DECK ─── */
-    .deck-wrapper {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 60px;
-    }
-    .deck-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .deck-preview {
-      background: var(--bg-primary); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); aspect-ratio: 16/9;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-    }
-    .deck-preview iframe { width: 100%; height: 100%; border: none; }
-    .deck-text h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-    .deck-text p { color: var(--text-secondary); margin-bottom: 28px; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
-    .deck-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
     /* ─── PROJECTS ─── */
     .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .project-card {
@@ -254,6 +192,22 @@
     .project-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; line-height: 1.35; letter-spacing: -0.01em; }
     .project-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    /* ─── WORK DECK ─── */
+    .deck-wrapper {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 60px;
+    }
+    .deck-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .deck-preview {
+      background: var(--bg-primary); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); aspect-ratio: 16/9;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .deck-preview iframe { width: 100%; height: 100%; border: none; }
+    .deck-text h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .deck-text p { color: var(--text-secondary); margin-bottom: 28px; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
+    .deck-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
     /* ─── HEAR ME TALK ─── */
     .talk-intro {
@@ -360,9 +314,9 @@
       .hero-image { width: 200px; height: 200px; }
       section { padding: 60px 24px; }
       .about-grid, .deck-inner, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
-      .feature-list, .screenshots-grid, .projects-grid, .talk-grid { grid-template-columns: 1fr; }
+      .feature-list, .projects-grid, .talk-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
-      .dce-section, .deck-wrapper, .contact-wrapper { padding: 36px 24px; }
+      .deck-wrapper, .contact-wrapper { padding: 36px 24px; }
       footer { flex-direction: column; gap: 8px; padding: 24px; text-align: center; }
     }
   </style>
@@ -373,9 +327,8 @@
   <a href="#" class="nav-logo">ram.</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#dce">Engine</a></li>
-    <li><a href="#deck">Work Deck</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#deck">Work Deck</a></li>
     <li><a href="#talk">Hear Me Talk</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -413,67 +366,6 @@
       <div class="stat-card"><div class="stat-value">40+</div><div class="stat-label">Team Members Managed</div></div>
       <div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Businesses Built</div></div>
       <div class="stat-card"><div class="stat-value">Fin. + PPE</div><div class="stat-label">Finance + Philosophy, Political Science, and Economics</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="dce" style="padding-top:0;">
-  <div class="section-label">Featured Build</div>
-  <h2 class="section-title">Dynamic Comps Engine</h2>
-  <div class="section-divider"></div>
-  <div class="dce-section">
-    <div class="dce-header">
-      <h2>Real-time comparable company analysis powered by multi-factor similarity scoring</h2>
-      <p>A Python + Streamlit application that dynamically identifies peer companies, weights them by similarity across business model, financial profile, and market behavior dimensions, and derives fair value estimates using sector-specific multiples.</p>
-    </div>
-    <div class="feature-list">
-      <div class="feature-item"><strong>Multi-Factor Similarity</strong><span>Scores peers across business, financial, and market dimensions</span></div>
-      <div class="feature-item"><strong>Sector-Aware Valuation</strong><span>Growth-adjusted models with weighted EV/Revenue, EV/Gross, P/E, EV/EBITDA</span></div>
-      <div class="feature-item"><strong>Watchlist Signals</strong><span>Portfolio scanning with buy/sell alerts based on fair value divergence</span></div>
-      <div class="feature-item"><strong>VIX-Regime Detection</strong><span>Adjusts context for Normal, Elevated, or Crisis market regimes</span></div>
-    </div>
-    <div class="tech-stack">
-      <span class="tag green">Python</span>
-      <span class="tag green">Streamlit</span>
-      <span class="tag">Yahoo Finance API</span>
-      <span class="tag">FRED</span>
-      <span class="tag">Pandas</span>
-      <span class="tag">NumPy</span>
-    </div>
-    <div class="screenshots-grid">
-      <div class="screenshot-card">
-        <img src="dce-home.png" alt="Home Dashboard" onclick="openLightbox(this.src)" />
-        <div class="screenshot-label"><strong>Home Dashboard</strong><span>Quick analysis, market regime, VIX indicator</span></div>
-      </div>
-      <div class="screenshot-card">
-        <img src="dce-comps.png" alt="Comparable Companies" onclick="openLightbox(this.src)" />
-        <div class="screenshot-label"><strong>Peer Group Detail</strong><span>Similarity scoring, weight allocation, implied prices</span></div>
-      </div>
-      <div class="screenshot-card">
-        <img src="dce-watchlist.png" alt="Watchlist Dashboard" onclick="openLightbox(this.src)" />
-        <div class="screenshot-label"><strong>Watchlist & Signals</strong><span>Active alerts, mispricing detection, scan results</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="deck" style="padding-top:0;">
-  <div class="section-label">Portfolio Presentation</div>
-  <h2 class="section-title">Work Deck</h2>
-  <div class="section-divider"></div>
-  <div class="deck-wrapper">
-    <div class="deck-inner">
-      <div class="deck-preview">
-        <iframe src="abhiram-work-deck.pdf" title="Work Deck PDF Preview"></iframe>
-      </div>
-      <div class="deck-text">
-        <h2>Comprehensive Finance Portfolio</h2>
-        <p>Download the deck to view it.</p>
-        <div class="deck-actions">
-          <a href="abhiram-work-deck.pdf" target="_blank" class="btn btn-secondary">Open PDF Fullscreen</a>
-          <a href="abhiram-work-deck.pptx" class="btn btn-primary">Download .pptx</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -529,6 +421,27 @@
       <p>Developed a pixel-art agent-based society simulation to study the impact of economic incentives. Includes a financial overlay where interest rates influence the reinvestment of capital by autonomous agents motivated by scarcity and hunger.</p>
       <div class="project-tags">
         <span class="tag purple">Javascript</span><span class="tag purple">Economic Theory</span><span class="tag">Interest Rate Modeling</span><span class="tag">Agent-Based Models</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deck" style="padding-top:0;">
+  <div class="section-label">Portfolio Presentation</div>
+  <h2 class="section-title">Work Deck</h2>
+  <div class="section-divider"></div>
+  <div class="deck-wrapper">
+    <div class="deck-inner">
+      <div class="deck-preview">
+        <iframe src="abhiram-work-deck.pdf" title="Work Deck PDF Preview"></iframe>
+      </div>
+      <div class="deck-text">
+        <h2>Comprehensive Finance Portfolio</h2>
+        <p>Download the deck to view it.</p>
+        <div class="deck-actions">
+          <a href="abhiram-work-deck.pdf" target="_blank" class="btn btn-secondary">Open PDF Fullscreen</a>
+          <a href="abhiram-work-deck.pptx" class="btn btn-primary">Download .pptx</a>
+        </div>
       </div>
     </div>
   </div>
