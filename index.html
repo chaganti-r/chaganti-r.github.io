@@ -3,574 +3,701 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ram Chaganti — Finance & Strategy</title>
+  <title>Abhiram Chaganti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #111114;
-      --bg-card: #16161a;
-      --text-primary: #f0eff4;
-      --text-secondary: #94939e;
-      --accent: #00e5a0;
-      --accent-dim: rgba(0, 229, 160, 0.08);
-      --accent-glow: rgba(0, 229, 160, 0.25);
-      --border: rgba(255,255,255,0.06);
-      --border-hover: rgba(0, 229, 160, 0.3);
-      --purple: #8B5CF6;
-      --purple-dim: rgba(139, 92, 246, 0.08);
-      --purple-glow: rgba(139, 92, 246, 0.25);
-      --purple-border: rgba(139, 92, 246, 0.3);
-      --radius: 16px;
-      --radius-sm: 10px;
+      --white: #ffffff;
+      --off-white: #fafaf8;
+      --ink: #111110;
+      --ink-light: #555550;
+      --ink-faint: #999990;
+      --rule: #e2e2de;
+      --accent: #1a1a18;
+      --tag-bg: #f2f2ef;
+      --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-primary); }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.7;
-      font-size: 16px;
-      overflow-x: hidden;
+      font-family: var(--serif);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: '';
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 32px;
     }
 
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 64px;
-      background: rgba(10,10,12,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--rule);
     }
-    .nav-logo {
-      font-size: 1.2rem; font-weight: 800; color: var(--accent);
-      text-decoration: none; letter-spacing: -0.02em;
+
+    /* HEADER */
+    header { padding: 72px 0 64px; }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
     }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.82rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
+
+    .wordmark {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .header-links { display: flex; gap: 24px; }
+
+    .header-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--ink-light);
+      text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text-primary); }
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 80px 48px 0;
-      max-width: 1200px; margin: 0 auto;
-      gap: 80px;
-    }
-    .hero-content { flex: 1; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,229,160,0.08); border: 1px solid rgba(0,229,160,0.2);
-      border-radius: 100px; padding: 7px 16px;
-      font-size: 0.75rem; font-weight: 600; color: var(--accent);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      margin-bottom: 36px;
-    }
-    .hero-badge::before {
-      content: ''; width: 7px; height: 7px; background: var(--accent);
-      border-radius: 50%; animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .header-links a:hover { color: var(--ink); }
 
-    .hero h1 {
-      font-size: clamp(40px, 5.5vw, 72px);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -0.03em; margin-bottom: 24px;
-    }
-    .hero h1 .accent-green { color: var(--accent); }
-    .hero-sub {
-      font-size: 1.05rem; color: var(--text-secondary);
-      max-width: 500px; line-height: 1.85; margin-bottom: 44px;
+    /* HERO */
+    .hero { padding: 64px 0 80px; }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 80px);
       font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 28px;
     }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-name em { font-style: italic; color: var(--ink-light); }
+
+    .hero-descriptor {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 32px;
+    }
+
+    .hero-bio {
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--ink-light);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 26px; border-radius: var(--radius-sm);
-      font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600;
-      text-decoration: none; transition: all 0.25s; cursor: pointer; border: none;
-      letter-spacing: 0.02em;
-    }
-    .btn-primary { background: var(--accent); color: var(--bg-primary); }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px var(--accent-glow); }
-    .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-    .hero-image {
-      width: 300px; height: 300px; border-radius: var(--radius);
-      overflow: hidden; border: 1px solid var(--border);
-      background: var(--bg-card); flex-shrink: 0;
-    }
-    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-image-placeholder {
-      width: 100%; height: 100%; display: flex;
-      align-items: center; justify-content: center;
-      color: var(--text-secondary); font-size: 0.85rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
     }
 
-    /* ─── SECTIONS ─── */
-    section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+    .btn:hover { background: var(--ink); color: var(--white); }
 
+    .btn-ghost {
+      border-color: var(--rule);
+      color: var(--ink-light);
+    }
+
+    .btn-ghost:hover { border-color: var(--ink-light); background: transparent; color: var(--ink); }
+
+    /* SECTION LABELS */
     .section-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .section-label.purple { color: var(--purple); }
-
-    .section-title {
-      font-size: clamp(28px, 3vw, 44px);
-      font-weight: 800; letter-spacing: -0.025em;
-      line-height: 1.1; margin-bottom: 16px;
-    }
-    .section-divider {
-      width: 100%; height: 1px;
-      background: var(--border); margin-bottom: 64px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 48px;
     }
 
-    /* ─── ABOUT ─── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .about-text p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 18px; font-size: 0.97rem; font-weight: 300; }
-
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .stat-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 28px;
-      transition: border-color 0.3s;
-    }
-    .stat-card:hover { border-color: var(--border-hover); }
-    .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
-    .stat-label { font-size: 0.72rem; color: var(--text-secondary); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
-
-    /* ─── PROJECTS ─── */
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .project-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 32px;
-      transition: all 0.35s; position: relative; overflow: hidden;
-    }
-    .project-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      opacity: 0; transition: opacity 0.35s;
-    }
-    .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .project-card:hover::before { opacity: 1; }
-    .project-card.purple-accent::before { background: linear-gradient(90deg, var(--purple), transparent); }
-    .project-card.purple-accent:hover { border-color: var(--purple-border); }
-
-    .project-type {
-      display: inline-block; padding: 4px 12px; border-radius: 100px;
-      background: var(--accent-dim); color: var(--accent);
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .project-type.purple { background: var(--purple-dim); color: var(--purple); }
-
-    .project-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; line-height: 1.35; letter-spacing: -0.01em; }
-    .project-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-
-    /* ─── WORK DECK ─── */
-    .deck-wrapper {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 60px;
-    }
-    .deck-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .deck-preview {
-      background: var(--bg-primary); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); aspect-ratio: 16/9;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-    }
-    .deck-preview iframe { width: 100%; height: 100%; border: none; }
-    .deck-text h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-    .deck-text p { color: var(--text-secondary); margin-bottom: 28px; line-height: 1.8; font-weight: 300; font-size: 0.95rem; }
-    .deck-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* ─── HEAR ME TALK ─── */
-    .talk-intro {
-      color: var(--text-secondary); max-width: 580px;
-      line-height: 1.85; margin-bottom: 56px; font-size: 0.97rem; font-weight: 300;
-    }
-    .talk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .talk-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: all 0.35s; position: relative;
-    }
-    .talk-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--purple), var(--accent), transparent);
-      opacity: 0; transition: opacity 0.35s;
-    }
-    .talk-card:hover { border-color: var(--purple-border); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .talk-card:hover::before { opacity: 1; }
-
-    .talk-embed {
-      position: relative; width: 100%; aspect-ratio: 16/9;
-      background: var(--bg-primary); overflow: hidden;
-    }
-    .talk-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .talk-embed-placeholder {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 14px; color: var(--text-secondary); font-size: 0.82rem; text-align: center; padding: 24px;
-    }
-    .play-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--purple-dim); border: 1px solid var(--purple-border);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s;
-    }
-    .talk-card:hover .play-icon { background: var(--purple-glow); transform: scale(1.1); }
-    .play-icon svg { width: 18px; height: 18px; fill: var(--purple); margin-left: 3px; }
-
-    .talk-meta { padding: 22px 24px; }
-    .talk-topic {
-      font-size: 0.7rem; font-weight: 700; color: var(--purple);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
-    }
-    .talk-meta h3 { font-size: 0.97rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; letter-spacing: -0.01em; }
-    .talk-meta p { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.75; font-weight: 300; }
-    .talk-duration {
-      display: inline-block; margin-top: 14px;
-      font-size: 0.72rem; color: var(--text-secondary);
-      border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px;
-      letter-spacing: 0.05em;
+    /* PROJECTS */
+    .project {
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule);
     }
 
-    /* ─── CONTACT ─── */
-    .contact-wrapper {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 64px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .contact-left h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 16px; }
-    .contact-left p { color: var(--text-secondary); line-height: 1.85; font-weight: 300; font-size: 0.97rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 16px; }
-    .contact-link {
-      display: flex; align-items: center; gap: 18px;
-      padding: 20px 24px; background: var(--bg-primary);
-      border: 1px solid var(--border); border-radius: var(--radius-sm);
-      text-decoration: none; transition: all 0.3s;
-    }
-    .contact-link:hover { border-color: var(--border-hover); transform: translateX(4px); }
-    .contact-link-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: var(--accent-dim); border: 1px solid rgba(0,229,160,0.2);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .contact-link-icon svg { width: 17px; height: 17px; stroke: var(--accent); fill: none; }
-    .contact-link-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text-primary); }
-    .contact-link-text span { font-size: 0.8rem; color: var(--text-secondary); }
+    .project:first-of-type { border-top: 1px solid var(--rule); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1200px; margin: 0 auto;
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
     }
-    footer p { font-size: 0.8rem; color: var(--text-secondary); }
 
-    /* ─── LIGHTBOX ─── */
-    .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 9998;
-      background: rgba(0,0,0,0.94); backdrop-filter: blur(8px);
-      align-items: center; justify-content: center; cursor: zoom-out;
+    .project-category {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
     }
-    .lightbox.active { display: flex; }
-    .lightbox-inner { position: relative; max-width: 90vw; }
-    .lightbox-inner img { max-width: 100%; max-height: 90vh; border-radius: var(--radius-sm); display: block; }
-    .lightbox-close { position: absolute; top: -44px; right: 0; background: none; border: none; color: var(--text-secondary); font-size: 28px; cursor: pointer; }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .hero { flex-direction: column; padding: 100px 24px 40px; gap: 40px; }
-      .hero-image { width: 200px; height: 200px; }
-      section { padding: 60px 24px; }
-      .about-grid, .deck-inner, .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
-      .feature-list, .projects-grid, .talk-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .deck-wrapper, .contact-wrapper { padding: 36px 24px; }
-      footer { flex-direction: column; gap: 8px; padding: 24px; text-align: center; }
+    .project-year {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+
+    .project-title {
+      font-size: 23px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .project-sub {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--ink-light);
+      margin-bottom: 16px;
+    }
+
+    .project-bullets {
+      list-style: none;
+      margin-bottom: 18px;
+      max-width: 620px;
+    }
+
+    .project-bullets li {
+      font-size: 16px;
+      color: var(--ink-light);
+      line-height: 1.65;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+
+    .project-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink-faint);
+      font-size: 13px;
+      top: 2px;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--ink-light);
+      padding: 4px 9px;
+    }
+
+    /* WALKTHROUGHS */
+    .walkthrough {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .walkthrough:first-of-type { border-top: 1px solid var(--rule); }
+
+    .walkthrough-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .walkthrough-title { font-size: 18px; font-weight: 500; color: var(--ink); }
+
+    .walkthrough-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .walkthrough-desc {
+      font-size: 15px;
+      color: var(--ink-light);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: var(--off-white);
+      border: 1px solid var(--rule);
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .contact-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-item:nth-child(-n+2) { border-top: 1px solid var(--rule); }
+    .contact-item:nth-child(odd) { padding-right: 32px; border-right: 1px solid var(--rule); }
+    .contact-item:nth-child(even) { padding-left: 32px; }
+
+    .contact-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 8px;
+    }
+
+    .contact-value { font-size: 17px; color: var(--ink); }
+
+    .contact-value a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+
+    .contact-value a:hover { border-color: var(--ink); }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #4a9f6a;
+      border-radius: 50%;
+      margin-right: 7px;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* FOOTER */
+    footer { padding: 40px 0; border-top: 1px solid var(--rule); }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner span {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 580px) {
+      .container { padding: 0 20px; }
+      .header-inner { flex-direction: column; gap: 16px; align-items: flex-start; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-item:nth-child(-n+2) { border-top: none; }
+      .contact-item:first-child { border-top: 1px solid var(--rule); }
+      .contact-item:nth-child(odd) { padding-right: 0; border-right: none; }
+      .contact-item:nth-child(even) { padding-left: 0; }
+      .hero-name { font-size: 44px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-logo">ram.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#deck">Work Deck</a></li>
-    <li><a href="#talk">Hear Me Talk</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <div class="container">
 
-<div class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">Open to Opportunities</div>
-    <h1>Ram Chaganti<br /><span class="accent-green">Finance & Strategy</span></h1>
-    <p class="hero-sub">Junior at Rutgers Business School studying Finance with a focus in Economics and Political Science. Builder of revenue-generating ventures. Exploring the intersection of capital markets, defense technology, and macro strategy.</p>
-    <div class="hero-actions">
-      <a href="resume.pdf" class="btn btn-primary">Resume</a>
-      <a href="abhiram-work-deck.pptx" class="btn btn-secondary">Work Deck</a>
-      <a href="#projects" class="btn btn-secondary">View Projects →</a>
-    </div>
-  </div>
-  <div class="hero-image">
-    <img src="headshot.jpg" alt="Ram Chaganti" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-    <div class="hero-image-placeholder" style="display:none;">Your photo here</div>
-  </div>
-</div>
-
-<section id="about">
-  <div class="section-label">Background</div>
-  <h2 class="section-title">About</h2>
-  <div class="section-divider"></div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a junior finance student at Rutgers Business School with a concentration in Philosophy, Politics, and Economics. My interests sit at the intersection of capital markets, public policy, and emerging technology—particularly defense and AI.</p>
-      <p>Outside the classroom, I've built and operated multiple businesses—from a 40-person snow removal operation to a vintage clothing resale business and a recording studio. These ventures gave me hands-on experience with P&L management, unit economics, and scaling operations from zero.</p>
-      <p>I'm currently building out technical skills in financial modeling, valuation, and data analysis as I recruit for investment banking and strategic finance roles across defense, technology, and financial services.</p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-value">$42K+</div><div class="stat-label">Revenue Generated Across Ventures</div></div>
-      <div class="stat-card"><div class="stat-value">40+</div><div class="stat-label">Team Members Managed</div></div>
-      <div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Businesses Built</div></div>
-      <div class="stat-card"><div class="stat-value">Fin. + PPE</div><div class="stat-label">Finance + Philosophy, Political Science, and Economics</div></div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" style="padding-top:0;">
-  <div class="section-label">Projects & Case Studies</div>
-  <h2 class="section-title">Selected Work</h2>
-  <div class="section-divider"></div>
-  <div class="projects-grid">
-    <div class="project-card purple-accent">
-      <div class="project-type purple">Software / Valuation</div>
-      <h3>Dynamic Comps Engine</h3>
-      <p>Built a real-time comparable company analysis platform that dynamically identifies and weights peer groups using multi-factor similarity scoring, derives fair value via sector-specific multiples to generate fairness opinion</p>
-      <div class="project-tags">
-        <span class="tag purple">Python</span><span class="tag purple">Streamlit</span><span class="tag">Yahoo Finance</span><span class="tag">FRED</span><span class="tag">Fair Value</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-type">Valuation</div>
-      <h3>DCF Analysis — NAS: ISSC</h3>
-      <p>Built a full discounted cash flow model projecting 5-year financials, calculating WACC, and deriving an implied share price with sensitivity analysis.</p>
-      <div class="project-tags">
-        <span class="tag">Excel</span><span class="tag">DCF</span><span class="tag">WACC</span><span class="tag">Sensitivity Analysis</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-type">M&A</div>
-      <h3>Merger Model — Target: NAS: ISSC, Acquirer: NYSE: BA</h3>
-      <p>Constructed an accretion/dilution analysis for a hypothetical acquisition, modeling purchase price allocation, synergies, and pro forma EPS impact.</p>
-      <div class="project-tags">
-        <span class="tag">Merger Model</span><span class="tag">Accretion / Dilution</span><span class="tag">Synergies</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-type">LBO</div>
-      <h3>Leveraged Buyout — NYSE: DCO</h3>
-      <p>Developing a leveraged buyout model analyzing entry/exit multiples, debt schedules, and sponsor returns under multiple scenarios.</p>
-      <div class="project-tags">
-        <span class="tag">LBO</span><span class="tag">Debt Schedule</span><span class="tag">IRR Analysis</span>
-      </div>
-    </div>
-    <div class="project-card">
-      <div class="project-type">Entrepreneurship</div>
-      <h3>SnowCo — Snow Removal Operation</h3>
-      <p>Founded and scaled a seasonal snow removal service to $18K+ in revenue with a team of 40. Managed operations, client acquisition, and crew logistics across multiple zones.</p>
-      <div class="project-tags">
-        <span class="tag">P&L Management</span><span class="tag">Operations</span><span class="tag">Team Leadership</span>
-      </div>
-    </div>
-    <div class="project-card purple-accent">
-      <div class="project-type purple">Software / Economics</div>
-      <h3>City Dynamics — Simulation Builder</h3>
-      <p>Developed a pixel-art agent-based society simulation to study the impact of economic incentives. Includes a financial overlay where interest rates influence the reinvestment of capital by autonomous agents motivated by scarcity and hunger.</p>
-      <div class="project-tags">
-        <span class="tag purple">Javascript</span><span class="tag purple">Economic Theory</span><span class="tag">Interest Rate Modeling</span><span class="tag">Agent-Based Models</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="deck" style="padding-top:0;">
-  <div class="section-label">Portfolio Presentation</div>
-  <h2 class="section-title">Work Deck</h2>
-  <div class="section-divider"></div>
-  <div class="deck-wrapper">
-    <div class="deck-inner">
-      <div class="deck-preview">
-        <iframe src="abhiram-work-deck.pdf" title="Work Deck PDF Preview"></iframe>
-      </div>
-      <div class="deck-text">
-        <h2>Comprehensive Finance Portfolio</h2>
-        <p>Download the deck to view it.</p>
-        <div class="deck-actions">
-          <a href="abhiram-work-deck.pdf" target="_blank" class="btn btn-secondary">Open PDF Fullscreen</a>
-          <a href="abhiram-work-deck.pptx" class="btn btn-primary">Download .pptx</a>
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <span class="wordmark">Abhiram Chaganti</span>
+        <div class="header-links">
+          <a href="https://chaganti-r.github.io/resume.pdf" target="_blank">Resume</a>
+          <a href="https://linkedin.com/in/abhiram-chaganti/" target="_blank">LinkedIn</a>
+          <a href="mailto:ac2547@scarletmail.rutgers.edu">Email</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<section id="talk" style="padding-top:0;">
-  <div class="section-label purple">Hear Me Talk</div>
-  <h2 class="section-title">Walkthroughs & Breakdowns</h2>
-  <div class="section-divider"></div>
-  <p class="talk-intro">Short recordings where I walk through projects, explain the methodology, and discuss the thinking behind the work — no slides, no script, just the analysis.</p>
-  <div class="talk-grid">
-
-    <div class="talk-card">
-      <div class="talk-embed">
-        <iframe src="https://www.loom.com/embed/c4b2bd521cf1448f8113c494fe93fc5b" allowfullscreen></iframe>
-      </div>
-      <div class="talk-meta">
-        <div class="talk-topic">Valuation</div>
-        <h3>Dynamic Comps Engine — Live Demo & Methodology</h3>
-        <p>Walking through the similarity scoring algorithm, sector-specific multiples, and VIX regime detection in a live session.</p>
-        <span class="talk-duration">Live Breakdown</span>
+    <!-- HERO -->
+    <div class="hero fade-in">
+      <div class="hero-descriptor">Investment Banking · Technology M&A</div>
+      <h1 class="hero-name">Ram<br />Chaganti</h1>
+      <ul class="project-bullets" style="margin-bottom: 40px; max-width: 580px;">
+          <li>Rising Senior at Rutgers Business School</li>
+          <li>B.S. Finance, Fixed Income Concentration</li>
+          <li>Minor: Economics & Political Science</li>
+          <li>Coursework: Investment Banking Analysis, Corporate Finance, Financial Accounting</li>
+        </ul>
+      <div class="hero-cta">
+        <a href="https://chaganti-r.github.io/resume.pdf" class="btn" target="_blank">Resume</a>
+        <a href="#about" class="btn btn-ghost">About Me</a>
       </div>
     </div>
 
-    <div class="talk-card">
-      <div class="talk-embed">
-        <iframe src="https://www.loom.com/embed/8b547530c5ec45afb14bd5e1f5397073" allowfullscreen></iframe>
-      </div>
-      <div class="talk-meta">
-        <div class="talk-topic">Coding / Econ</div>
-        <h3>City Dynamics — Simulation & Economic Logic</h3>
-        <p>Demonstrating how behavioral agents react to hunger, scarcity, and interest rate adjustments within a custom-built pixel engine.</p>
-        <span class="talk-duration">Live Breakdown</span>
-      </div>
-    </div>
+    <!-- SELECTED WORK -->
+    <section id="projects">
+      <p class="section-label fade-in">Selected Work</p>
 
-    <div class="talk-card">
-      <div class="talk-embed">
-        <iframe src="https://www.loom.com/embed/3d26ab9282c948a3a75d55ea39baec45" allowfullscreen></iframe>
-      </div>
-      <div class="talk-meta">
-        <div class="talk-topic">M&A</div>
-        <h3>Boeing / ISSC Merger Model Breakdown</h3>
-        <p>Explaining the accretion/dilution analysis, purchase price allocation assumptions, and how synergies were modeled.</p>
-        <span class="talk-duration">Live Breakdown</span>
-      </div>
-    </div>
-
-    <div class="talk-card">
-      <div class="talk-embed">
-        <iframe src="https://www.loom.com/embed/7537673eefce4b17a98d53634e369cc5" allowfullscreen></iframe>
-      </div>
-      <div class="talk-meta">
-        <div class="talk-topic">DCF</div>
-        <h3>ISSC DCF — WACC Build & Sensitivity</h3>
-        <p>Walking through the five-year projection, WACC calculation, and how the sensitivity table was structured around key assumptions.</p>
-        <span class="talk-duration">Live Breakdown</span>
-      </div>
-    </div>
-
-    <div class="talk-card">
-      <div class="talk-embed">
-        <iframe src="https://www.loom.com/embed/03b1483fa43b470999a64a54166658ee" allowfullscreen></iframe>
-      </div>
-      <div class="talk-meta">
-        <div class="talk-topic">LBO</div>
-        <h3>Ducommun (DCO) Leveraged Buyout Breakdown</h3>
-        <p>Analyzing the exit/entry multiples, debt scheduling, and sponsor returns for the DCO LBO model.</p>
-        <span class="talk-duration">Live Breakdown</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact" style="padding-top:0;">
-  <div class="section-label">Contact</div>
-  <h2 class="section-title">Let's Connect</h2>
-  <div class="section-divider"></div>
-  <div class="contact-wrapper">
-    <div class="contact-left">
-      <h2>Open to Summer 2026 Roles</h2>
-      <p>I'm currently recruiting for summer 2026 investment banking and strategic finance roles. Open to conversations across defense tech, financial services, and technology.</p>
-    </div>
-    <div class="contact-links">
-      <a href="mailto:ac2547@scarletmail.rutgers.edu" class="contact-link">
-        <div class="contact-link-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      <!-- Project Carolina -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Sell-Side Advisory · Pitchbook</span>
+          <span class="project-year">2026</span>
         </div>
-        <div class="contact-link-text">
-          <strong>Email</strong>
-          <span>ac2547@scarletmail.rutgers.edu</span>
+        <h2 class="project-title">Project Carolina — nCino (NAS: NCNO)</h2>
+        <p class="project-sub">Sell-Side Advisory Pitchbook</p>
+        <ul class="project-bullets">
+          <li>Full sell-side advisory pitchbook for nCino, a vertical SaaS leader in lending-focused financial technology</li>
+          <li>Valuation architecture: DCF (three methods, probability-weighted), trading comps across three peer buckets (business model, retention profile, growth profile), and precedent transactions</li>
+          <li>Concluded 8.5x–9.5x NTM revenue target purchase multiple implying $5.5B–$6.1B EV and ~150%+ premium to spot</li>
+          <li>Includes buyer universe, illustrative process timeline, structural issues (Salesforce dependency, consumption pricing transition), and execution risks</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Sell-Side M&A</span>
+          <span class="tag">DCF</span>
+          <span class="tag">Trading Comps</span>
+          <span class="tag">Precedent Transactions</span>
+          <span class="tag">Football Field</span>
+          <span class="tag">Buyer Universe</span>
+          <span class="tag">FinTech SaaS</span>
         </div>
-      </a>
-      <a href="https://linkedin.com/in/abhiram-chaganti/" target="_blank" class="contact-link">
-        <div class="contact-link-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+
+      <!-- Project Maven -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Sell-Side Advisory · Pitchbook</span>
+          <span class="project-year">2026</span>
         </div>
-        <div class="contact-link-text">
-          <strong>LinkedIn</strong>
-          <span>linkedin.com/in/abhiram-chaganti/</span>
+        <h2 class="project-title">Project Maven — Appian (NAS: APPN)</h2>
+        <p class="project-sub">Sell-Side Advisory Pitchbook</p>
+        <ul class="project-bullets">
+          <li>Sell-side advisory pitchbook for Appian, a low-code enterprise automation platform with a dominant government moat — one of ~57 vendors globally holding IL5 PaaS authorization</li>
+          <li>Identified 68% in unrealized value versus current trading levels at 2.0x LTM revenue</li>
+          <li>Targets 3.0x–3.5x NTM revenue purchase multiple via broad buyer auction; Salesforce and ServiceNow identified as Tier 1 strategics</li>
+          <li>Includes competitive moat analysis (FedRAMP / CMMC), DCF, three trading comp sets, precedent transactions, and transaction considerations</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Sell-Side M&A</span>
+          <span class="tag">DCF</span>
+          <span class="tag">Trading Comps</span>
+          <span class="tag">Gov't SaaS</span>
+          <span class="tag">FedRAMP / IL5</span>
+          <span class="tag">Buyer Universe</span>
+          <span class="tag">Enterprise Software</span>
         </div>
-      </a>
-    </div>
+      </div>
+
+      <!-- Project Orbit -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Leveraged Buyout · Analysis</span>
+          <span class="project-year">2026</span>
+        </div>
+        <h2 class="project-title">Project Orbit — GitLab (NAS: GTLB)</h2>
+        <p class="project-sub">Sponsor Take-Private · LBO Analysis</p>
+        <ul class="project-bullets">
+          <li>Full LBO analysis on GitLab, the sole public pure-play DevSecOps platform, modeled as a 30% premium take-private at $33.31/share and $5.1B TEV</li>
+          <li>Capital structure: 12.0x gross leverage (8.0x TLB + 3.0x second lien PIK); 54.6% sponsor equity check of $3.6B</li>
+          <li>7-year hold with detailed debt schedules, FCF sweep mechanics, and returns analysis — base case 3.1x MoM / 17.4% IRR</li>
+          <li>IRR sensitivity across entry price and exit multiple; hurdle rate clears at 25x NTM EBITDA entry vs. 28.7x base</li>
+          <li>Includes value creation attribution waterfall and capital structure evolution charts</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">LBO</span>
+          <span class="tag">Take-Private</span>
+          <span class="tag">Debt Schedule</span>
+          <span class="tag">IRR / MoM</span>
+          <span class="tag">FCF Sweep</span>
+          <span class="tag">DevSecOps</span>
+          <span class="tag">Sponsor Returns</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Comps Engine -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Software · Valuation Tool</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h2 class="project-title">Dynamic Comps Engine</h2>
+        <p class="project-sub">Python · Streamlit · Real-Time Comparable Company Analysis</p>
+        <ul class="project-bullets">
+          <li>Real-time comparable company analysis platform with multi-factor similarity scoring and VIX-regime detection</li>
+          <li>Dynamically weights peer groups and applies sector-specific multiples to derive fair value</li>
+          <li>Outputs a fairness opinion range; built end-to-end in Python with a Streamlit front-end</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Yahoo Finance</span>
+          <span class="tag">Fair Value</span>
+          <span class="tag">VIX Regime</span>
+        </div>
+      </div>
+
+      <!-- Ducommun LBO -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Leveraged Buyout · Model</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h2 class="project-title">Leveraged Buyout — Ducommun (NYSE: DCO)</h2>
+        <p class="project-sub">Defense Manufacturer · Sponsor Returns Analysis</p>
+        <ul class="project-bullets">
+          <li>Structured $600M debt package across 3 tranches, modeling amortization, cash sweeps, and covenant compliance over a 5-year hold</li>
+          <li>Modeled debt paydown waterfall using interest coverage, amortization, and 95% cash sweep — de-levering from 6.2x to 2.3x at exit</li>
+          <li>Ran sensitivity analyses on entry/exit multiples, leverage, and EBITDA; achieved 2.7x MOIC and 22% IRR in the upside case</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">LBO</span>
+          <span class="tag">Debt Schedule</span>
+          <span class="tag">IRR Analysis</span>
+          <span class="tag">Defense</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <!-- Boeing / ISSC Merger Model -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">M&A · Merger Model</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h2 class="project-title">Merger Model — Boeing (NYSE: BA) / ISSC (NAS: ISSC)</h2>
+        <p class="project-sub">Accretion / Dilution · Hypothetical Strategic Acquisition</p>
+        <ul class="project-bullets">
+          <li>Accretion/dilution analysis for a hypothetical acquisition of ISSC by Boeing</li>
+          <li>Modeled purchase price allocation, synergies, and pro forma EPS impact across multiple deal structures</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Merger Model</span>
+          <span class="tag">Accretion / Dilution</span>
+          <span class="tag">PPA</span>
+          <span class="tag">Synergies</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <!-- ISSC DCF -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Valuation · DCF</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h2 class="project-title">DCF Analysis — ISSC (NAS: ISSC)</h2>
+        <p class="project-sub">5-Year Projection · WACC · Sensitivity Analysis</p>
+        <ul class="project-bullets">
+          <li>Full discounted cash flow model with 5-year financial projections and WACC build via comparable beta unlevering/relevering</li>
+          <li>Two-variable sensitivity analysis across WACC and terminal growth rate; derived implied share price vs. trading price</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">DCF</span>
+          <span class="tag">WACC</span>
+          <span class="tag">Sensitivity Analysis</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+
+      <!-- City Dynamics -->
+      <div class="project fade-in">
+        <div class="project-meta">
+          <span class="project-category">Software · Economics Simulation</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h2 class="project-title">City Dynamics — Agent-Based Simulation</h2>
+        <p class="project-sub">JavaScript · Economic Theory · Interest Rate Modeling</p>
+        <ul class="project-bullets">
+          <li>Pixel-art agent-based society simulation studying the behavioral impact of economic incentives</li>
+          <li>Interest rates influence autonomous agents' reinvestment decisions; agents respond dynamically to scarcity and hunger signals</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Agent-Based Models</span>
+          <span class="tag">Economic Theory</span>
+          <span class="tag">Interest Rate Modeling</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- WALKTHROUGHS -->
+    <section id="walkthroughs">
+      <p class="section-label fade-in">Walkthroughs</p>
+      <p class="hero-bio fade-in" style="margin-bottom: 40px; font-size: 16px;">Short recordings walking through the methodology and thinking behind the work — no slides, no script.</p>
+
+      <div class="walkthrough fade-in">
+        <div class="walkthrough-header">
+          <span class="walkthrough-title">Dynamic Comps Engine — Live Demo</span>
+          <span class="walkthrough-label">Valuation</span>
+        </div>
+        <p class="walkthrough-desc">Similarity scoring algorithm, sector-specific multiples, and VIX regime detection.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.loom.com/embed/c4b2bd521cf1448f8113c494fe93fc5b" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="walkthrough fade-in">
+        <div class="walkthrough-header">
+          <span class="walkthrough-title">Boeing / ISSC Merger Model</span>
+          <span class="walkthrough-label">M&A</span>
+        </div>
+        <p class="walkthrough-desc">Accretion/dilution analysis, PPA assumptions, and synergy modeling.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.loom.com/embed/3d26ab9282c948a3a75d55ea39baec45" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="walkthrough fade-in">
+        <div class="walkthrough-header">
+          <span class="walkthrough-title">ISSC DCF — WACC Build & Sensitivity</span>
+          <span class="walkthrough-label">DCF</span>
+        </div>
+        <p class="walkthrough-desc">Five-year projection, WACC calculation, and sensitivity table construction.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.loom.com/embed/7537673eefce4b17a98d53634e369cc5" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="walkthrough fade-in">
+        <div class="walkthrough-header">
+          <span class="walkthrough-title">Ducommun (DCO) LBO Breakdown</span>
+          <span class="walkthrough-label">LBO</span>
+        </div>
+        <p class="walkthrough-desc">Entry/exit multiples, debt scheduling, and sponsor return scenarios.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.loom.com/embed/03b1483fa43b470999a64a54166658ee" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="walkthrough fade-in">
+        <div class="walkthrough-header">
+          <span class="walkthrough-title">City Dynamics — Simulation & Economic Logic</span>
+          <span class="walkthrough-label">Coding / Econ</span>
+        </div>
+        <p class="walkthrough-desc">How behavioral agents react to hunger, scarcity, and interest rate adjustments.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.loom.com/embed/8b547530c5ec45afb14bd5e1f5397073" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label fade-in">About</p>
+      <div class="fade-in" style="max-width: 620px;">
+        <p style="font-size: 19px; line-height: 1.75; color: var(--ink-light); margin-bottom: 24px;">Finance is the function, tech is my interest. Specifically, I enjoy keeping up with and covering infrastructure — companies that provide a product or service that other companies build on top of.</p>
+        <p style="font-size: 19px; line-height: 1.75; color: var(--ink-light); margin-bottom: 24px;">Since companies use M&A to scale, move up the value chain, and unlock distribution, among other reasons, this impacts how the company appears in our day-to-day lives and how their enterprise customers respond.</p>
+        <p style="font-size: 19px; line-height: 1.75; color: var(--ink-light);">Bankers get a unique opportunity to influence these decisions. Which is why I am drawn to the work.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label fade-in">Contact</p>
+
+      <div class="contact-grid fade-in">
+        <div class="contact-item">
+          <p class="contact-label">Status</p>
+          <p class="contact-value"><span class="status-dot"></span>Open to Summer 2026 Roles</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Focus</p>
+          <p class="contact-value">Technology M&A · Sell-Side Advisory</p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">Email</p>
+          <p class="contact-value"><a href="mailto:ac2547@scarletmail.rutgers.edu">ac2547@scarletmail.rutgers.edu</a></p>
+        </div>
+        <div class="contact-item">
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-value"><a href="https://linkedin.com/in/abhiram-chaganti/" target="_blank">abhiram-chaganti</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <span>Abhiram Chaganti · Rutgers Business School c/o 2027</span>
+        <span>Technology M&A</span>
+      </div>
+    </footer>
+
   </div>
-</section>
 
-<footer>
-  <p>© 2025 Ram Chaganti.</p>
-  <p>Rutgers Business School</p>
-</footer>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lightbox-inner" onclick="event.stopPropagation()">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <img id="lightbox-img" src="" alt="" />
-  </div>
-</div>
-
-<script>
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('active');
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-  }
-  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
-</script>
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
